@@ -1,0 +1,7 @@
+## Editor stuff
+.idea
+.vscode
+
+## Python stuff
+.venv
+venv
