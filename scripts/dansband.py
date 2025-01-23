@@ -1,38 +1,38 @@
 import math
 
 from midiutil.MidiFile import MIDIFile
-import random
+
+from utils import save_midi_file
 
 
 def create_danseband_template():
     # Create MIDI object with 6 tracks (adding vocal track)
-    MyMIDI = MIDIFile(6, adjust_origin=False, deinterleave=False)
+    midi_file = MIDIFile(6, adjust_origin=False, deinterleave=False)
 
     # Global settings
     tempo = 112
     time = 0
 
     for track in range(6):
-        MyMIDI.addTempo(track, time, tempo)
-        MyMIDI.addProgramChange(track, 0, time, get_instrument(track))
+        midi_file.addTempo(track, time, tempo)
+        midi_file.addProgramChange(track, 0, time, get_instrument(track))
 
     # Add steel guitar specific controls (Track 0)
-    setup_steel_guitar_controls(MyMIDI, 0)
-    setup_vocal_controls(MyMIDI, 5)
+    setup_steel_guitar_controls(midi_file, 0)
+    setup_vocal_controls(midi_file, 5)
 
     # Classic country/danseband progression (I-vi-IV-V in C major)
     chords = [(60, 64, 67), (57, 60, 64), (65, 69, 72), (67, 71, 74)]
 
     # Create all parts
-    create_steel_guitar(MyMIDI, 0, chords)
-    create_accordion(MyMIDI, 1, chords)
-    create_bass_pattern(MyMIDI, 2, chords)
-    create_rhythm_guitar(MyMIDI, 3, chords)
-    create_drum_pattern(MyMIDI, 4)
-    create_vocal_melody(MyMIDI, 5, chords)
+    create_steel_guitar(midi_file, 0, chords)
+    create_accordion(midi_file, 1, chords)
+    create_bass_pattern(midi_file, 2, chords)
+    create_rhythm_guitar(midi_file, 3, chords)
+    create_drum_pattern(midi_file, 4)
+    create_vocal_melody(midi_file, 5, chords)
 
-    with open("../generated/danseband.mid", "wb") as output_file:
-        MyMIDI.writeFile(output_file)
+    save_midi_file(midi_file, "danseband.mid")
 
 
 def get_instrument(track):

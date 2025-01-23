@@ -1,5 +1,8 @@
-from midiutil.MidiFile import MIDIFile
 import math
+
+from midiutil.MidiFile import MIDIFile
+
+from utils import save_midi_file
 
 
 def setup_track_names(midi_file):
@@ -65,8 +68,7 @@ def create_angels_template():
 
     create_chorus(midi_file, current_bar, chorus_prog, "final")
 
-    with open("../generated/jag_trodde_anglarna_vocal.mid", "wb") as output_file:
-        midi_file.writeFile(output_file)
+    save_midi_file(midi_file, "jag_trodde_anglarna_vocal.mid")
 
 
 def create_verse(midi_file, start_bar, progression, verse_type):

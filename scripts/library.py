@@ -1,9 +1,11 @@
-from midiutil.MidiFile import MIDIFile
 import math
+
+from midiutil.MidiFile import MIDIFile
+from utils import save_midi_file
 
 
 class DansebandSong:
-    def __init__(self, name="danseband_song", tempo=116):
+    def __init__(self, name="danseband_song.mid", tempo=116):
         self.name = name
         self.tempo = tempo
         self.midi_file = None
@@ -99,8 +101,7 @@ class DansebandSong:
         self._generate_default_arrangement(progressions)
 
         # Save MIDI file
-        with open(f"{self.name}.mid", "wb") as output_file:
-            self.midi_file.writeFile(output_file)
+        save_midi_file(self.midi_file, self.name)
 
     def _setup_tracks(self):
         """Initialize all tracks with proper names and settings"""
@@ -544,7 +545,7 @@ if __name__ == "__main__":
     }
 
     # Create and configure song
-    song = DansebandSong("example_danseband_song")
+    song = DansebandSong("example_danseband_song.mid")
 
     # Optional: customize song structure
     song.set_structure({"intro": 4, "verse": 8, "chorus": 8, "bridge": 4, "outro": 4})

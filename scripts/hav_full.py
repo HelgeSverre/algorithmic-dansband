@@ -1,5 +1,8 @@
-from midiutil.MidiFile import MIDIFile
 import math
+
+from midiutil.MidiFile import MIDIFile
+
+from utils import save_midi_file
 
 
 def setup_track_names(midi_file):
@@ -117,8 +120,7 @@ def create_danseband_template():
     # Outro
     create_outro_section(midi_file, current_bar, base_chords, OUTRO_LENGTH)
 
-    with open("danseband_full_arrangement.mid", "wb") as output_file:
-        midi_file.writeFile(output_file)
+    save_midi_file(midi_file, "danseband_full_arrangement.mid")
 
 
 def get_initial_volume(track):

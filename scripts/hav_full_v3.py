@@ -1,5 +1,8 @@
-from midiutil.MidiFile import MIDIFile
 import math
+
+from midiutil.MidiFile import MIDIFile
+
+from utils import save_midi_file
 
 
 def setup_track_names(midi_file):
@@ -181,8 +184,7 @@ def create_danseband_template():
     # Outro (using last part of final chorus progression)
     create_outro_section(midi_file, current_bar, final_chorus_prog[-4:], OUTRO_LENGTH)
 
-    with open("../generated/ole_ivars_style_arrangement_4.mid", "wb") as output_file:
-        midi_file.writeFile(output_file)
+    save_midi_file(midi_file, "danseband_full_arrangement_v3.mid")
 
 
 def get_initial_volume(track):

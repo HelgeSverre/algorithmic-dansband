@@ -1,0 +1,5 @@
+Metadata-Version: 2.2
+Name: dansband
+Version: 0.1
+Requires-Dist: midiutil
+Dynamic: requires-dist

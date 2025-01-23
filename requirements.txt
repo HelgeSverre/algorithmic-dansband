@@ -1,0 +1,2 @@
+MIDIUtil==1.2.1
+setuptools==68.2.2

@@ -1,4 +1,4 @@
-from scripts.library import DansebandSong
+from library import DansebandSong
 
 if __name__ == "__main__":
     progression = {
@@ -10,7 +10,7 @@ if __name__ == "__main__":
         ],
     }
 
-    song = DansebandSong(name="example_song", tempo=116)
+    song = DansebandSong(name="example_song.mid", tempo=116)
 
     song.set_structure({"intro": 4, "verse": 8, "chorus": 8, "bridge": 4, "outro": 4})
 

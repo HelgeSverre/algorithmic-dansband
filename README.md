@@ -33,9 +33,30 @@ Some of the generated MIDI files can be found in the `generated` directory.
 - [ole_ivars_style_arrangement_2.mid](generated/ole_ivars_style_arrangement_2.mid)
 - [ole_ivars_style_arrangement_4.mid](generated/ole_ivars_style_arrangement_4.mid)
 
-## Setup
+## Setup / Installation
 
 ```shell
-# Virtual environment
+# Setup virtual environment 
 python3 -m venv venv
+
+# Activate virtual environment
+source venv/bin/activate
+
+## Install dependencies
+pip install -r requirements.txt
+
+# Format code
+pipx run black scripts/
+
+# Run one of the scripts
+python scripts/angels.py
+python scripts/dansband.py
+python scripts/hav.py
+python scripts/hav_full.py
+python scripts/hav_full_v2.py
+python scripts/hav_full_v3.py
+python scripts/himmelen.py
+python scripts/library.py
+python scripts/library_example.py
+python scripts/main.py
 ```

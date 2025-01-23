@@ -1,10 +1,11 @@
 from midiutil.MidiFile import MIDIFile
-import random
+
+from utils import save_midi_file
 
 
 def create_danseband_edm_template():
     # Create MIDI object with 6 tracks
-    MyMIDI = MIDIFile(6)
+    midi_file = MIDIFile(6)
 
     # Track 0: Steel Guitar melody line
     # Track 1: Bass line (typical danseband walking bass)
@@ -18,33 +19,31 @@ def create_danseband_edm_template():
     time = 0
 
     for track in range(6):
-        MyMIDI.addTempo(track, time, tempo)
-        MyMIDI.addProgramChange(track, 0, time, get_instrument(track))
+        midi_file.addTempo(track, time, tempo)
+        midi_file.addProgramChange(track, 0, time, get_instrument(track))
 
     # Basic chord progression (I-IV-V-I in C major)
     chords = [(60, 64, 67), (65, 69, 72), (67, 71, 74), (60, 64, 67)]
 
     # Steel Guitar Melody (Track 0)
-    create_steel_guitar_melody(MyMIDI, 0, chords)
+    create_steel_guitar_melody(midi_file, 0, chords)
 
     # Bass Line (Track 1)
-    create_bass_pattern(MyMIDI, 1, chords)
+    create_bass_pattern(midi_file, 1, chords)
 
     # Rhythm Section (Track 2)
-    create_rhythm_section(MyMIDI, 2, chords)
+    create_rhythm_section(midi_file, 2, chords)
 
     # Basic Drums (Track 3)
-    create_drum_pattern(MyMIDI, 3)
+    create_drum_pattern(midi_file, 3)
 
     # EDM Elements (Track 4)
-    create_edm_rhythm(MyMIDI, 4)
+    create_edm_rhythm(midi_file, 4)
 
     # Atmospheric Pads (Track 5)
-    create_atmosphere(MyMIDI, 5, chords)
+    create_atmosphere(midi_file, 5, chords)
 
-    # Write to disk
-    with open("../generated/danseband_edm_template.mid", "wb") as output_file:
-        MyMIDI.writeFile(output_file)
+    save_midi_file(midi_file, "danseband_edm_template.mid")
 
 
 def get_instrument(track):
